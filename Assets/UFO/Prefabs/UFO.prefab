@@ -96,6 +96,67 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!1 &1665029066524440299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5795432704089682050}
+  - component: {fileID: 7596598366148991270}
+  - component: {fileID: 4850649187618623849}
+  m_Layer: 0
+  m_Name: Ray
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5795432704089682050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665029066524440299}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5886463855557892326}
+  - {fileID: 3583338446618374414}
+  m_Father: {fileID: 3583338446706321588}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7596598366148991270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665029066524440299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af033d565ab8424591ed9b24078f0ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointEndGrab: {fileID: 5886463855557892326}
+--- !u!136 &4850649187618623849
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665029066524440299}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 8
+  m_Direction: 1
+  m_Center: {x: 0, y: 4, z: 0}
 --- !u!1 &3583338445064718974
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,9 +264,8 @@ GameObject:
   - component: {fileID: 3583338446618374414}
   - component: {fileID: 3583338446618374449}
   - component: {fileID: 3583338446618374448}
-  - component: {fileID: 3583338446618374415}
   m_Layer: 0
-  m_Name: Ray
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,8 +282,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 1}
   m_Children: []
-  m_Father: {fileID: 3583338446706321588}
-  m_RootOrder: 3
+  m_Father: {fileID: 5795432704089682050}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3583338446618374449
 MeshFilter:
@@ -274,20 +334,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3583338446618374415
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3583338446618374413}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &3583338446706321587
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,8 +366,7 @@ Transform:
   m_Children:
   - {fileID: 1717095204949645780}
   - {fileID: 3583338445064718946}
-  - {fileID: 5886463855557892326}
-  - {fileID: 3583338446618374414}
+  - {fileID: 5795432704089682050}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -337,8 +382,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d5cf9333a507547bb893a77d7e68d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  pointGrab: {fileID: 5886463855557892326}
+  _controller: {fileID: 0}
+  ray: {fileID: 7596598366148991270}
 --- !u!95 &3437041813175762979
 Animator:
   serializedVersion: 3
@@ -384,7 +429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5886463855557892326}
   m_Layer: 0
-  m_Name: PointGrab
+  m_Name: PointEndGrab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,10 +442,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5516967423944772676}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 3583338446706321588}
-  m_RootOrder: 2
+  m_Father: {fileID: 5795432704089682050}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

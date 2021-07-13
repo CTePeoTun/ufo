@@ -1,12 +1,16 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
-public class Animal : MonoBehaviour
+public class Animal : PoolObject
 {
+    public Action<Animal> OnGrab;
+
     private Vector3 targetPoint;
     private CancellationTokenSource cts;
     private NavMeshAgent agent;
@@ -19,12 +23,12 @@ public class Animal : MonoBehaviour
         cts = new CancellationTokenSource();
     }
 
-    private void Start()
+    public void Move()
     {
+        agent.Warp(transform.position);
         MakeChoice().Forget();
         MoveToNewPoint();
     }
-
 
     private async UniTaskVoid MakeChoice()
     {
@@ -57,8 +61,19 @@ public class Animal : MonoBehaviour
     public void Stay()
     {
         cts?.Cancel();
+        cts = new CancellationTokenSource();
         agent.isStopped = true;
         _collider.enabled = false;
         agent.enabled = false;
+    }
+
+    protected override void Clear()
+    {
+        _collider.enabled = true;
+        agent.enabled = true;
+        agent.isStopped = false;
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+        OnGrab?.Invoke(this);
     }
 }

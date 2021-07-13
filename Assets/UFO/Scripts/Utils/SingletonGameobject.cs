@@ -29,12 +29,15 @@ public class SingletonGameobject<T> : MonoBehaviour where T : Object
     {
         if (instance != null)
         {
-            DestroyImmediate(this.gameObject);
+            Destroy(this.gameObject);
             return;
+        } else
+        {
+            instance = FindObjectOfType<T>();
         }
         if (isDontDestroyOnLoad)
         {
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 
